@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MK_SERVICE : création de sites web, solutions IA, réseaux et dépannage informatique à Soa, Cameroun.">
+<meta name="theme-color" content="#040c24">
+<link rel="icon" type="image/png" href="img/logo.png">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MK_SERVICE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800;1,900&family=Inter:wght@400;500;600&family=Kaushan+Script&family=Montserrat:wght@600;700;800&display=swap">
+<style>
+/* Layout: barre de contact, bandeau collant, hero (nom en grand + photo), 4 cartes services, parcours, à propos + engagements, réalisations, FAQ, bloc contact. Style tiré des maquettes : bleu nuit, bleu électrique, orange, coins diagonaux. */
+:root {
+  --bg: #040c24;
+  --bg-2: #071436;
+  --surface: #0a1a42;
+  --surface-2: #0e2250;
+  --line: rgba(59, 147, 255, 0.34);
+  --line-soft: rgba(59, 147, 255, 0.18);
+  --fg: #f1f5ff;
+  --muted: #a9b9e0;
+  --blue: #2f8cff;
+  --blue-2: #5cb0ff;
+  --orange: #ff8a1f;
+  --orange-2: #ff5a1f;
+  --orange-ink: #1b0d00;
+  --font-display: "Montserrat", "Trebuchet MS", system-ui, sans-serif;
+  --font-brand: "Exo 2", "Montserrat", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-script: "Kaushan Script", "Brush Script MT", cursive;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 40; background: var(--bg);
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+.ic { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Langues */
+.en { display: none; }
+html[data-lang="en"] .en { display: inline; }
+html[data-lang="en"] .fr { display: none; }
+
+.wrap {
+  width: 100%; max-width: 1180px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+[id] { scroll-margin-top: 90px; }
+
+/* Barre de contact */
+.topbar { background: var(--bg); border-bottom: 1px solid var(--line-soft); font-size: 0.86rem; position: relative; overflow: hidden; }
+.topbar .wrap { display: flex; align-items: center; gap: 10px 26px; padding-block: 9px; }
+.ci { display: inline-flex; align-items: center; gap: 8px; color: var(--fg); white-space: nowrap; }
+.ci .ic { color: var(--orange); }
+.motto { margin-left: auto; font-style: italic; font-weight: 600; padding-right: 90px; text-align: right; }
+.stripes { position: absolute; right: 0; top: 0; bottom: 0; width: 84px; background:
+  linear-gradient(110deg, transparent 0 22%, var(--orange) 22% 40%, transparent 40% 48%, var(--blue) 48% 62%, transparent 62%); }
+
+/* Bandeau */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(4, 12, 36, 0.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
+.bar { display: flex; align-items: center; gap: 18px; padding-block: 10px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; flex: none; }
+.brand img { width: 62px; height: auto; display: block; }
+.brand .name { font-family: var(--font-brand); font-style: italic; font-weight: 900; font-size: 1.55rem; letter-spacing: -0.01em; line-height: 1; }
+.brand .name b { color: var(--orange); font-weight: 900; }
+.brand .slogan { display: block; font-family: var(--font-body); font-style: italic; font-weight: 500; font-size: 0.72rem; color: var(--muted); letter-spacing: 0; margin-top: 5px; }
+.nav { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.nav a { text-decoration: none; color: var(--fg); font-weight: 500; font-size: 0.9rem; padding: 9px 12px; border-radius: 999px; white-space: nowrap; }
+.nav a:hover { color: var(--orange); }
+.nav a.on { background: linear-gradient(180deg, var(--orange), var(--orange-2)); color: var(--orange-ink); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+.nav a.on:hover { color: var(--orange-ink); }
+.tools { display: flex; align-items: center; gap: 12px; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.lang button { font: inherit; font-size: 0.82rem; font-weight: 600; border: 0; background: transparent; color: var(--muted); padding: 4px 11px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--surface-2); color: var(--fg); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 0.95rem; font-family: inherit;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-main { background: linear-gradient(180deg, var(--orange), var(--orange-2)); color: var(--orange-ink); box-shadow: 0 6px 22px rgba(255, 110, 20, 0.35); }
+.btn-main:hover { transform: translateY(-1px); box-shadow: 0 8px 26px rgba(255, 110, 20, 0.5); }
+.btn-line { border-color: rgba(255, 255, 255, 0.85); color: var(--fg); background: rgba(4, 12, 36, 0.4); }
+.btn-line:hover { background: rgba(255, 255, 255, 0.08); }
+.btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
+.btn-ghost:hover { background: var(--surface); }
+.btn-sm { padding: 8px 15px; font-size: 0.86rem; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-main:hover { transform: none; } }
+
+/* Hero */
+.hero-wrap { position: relative; overflow: hidden; background:
+  radial-gradient(50% 70% at 82% 20%, rgba(47, 140, 255, 0.34), transparent 70%),
+  radial-gradient(40% 50% at 0% 70%, rgba(47, 140, 255, 0.16), transparent 70%),
+  linear-gradient(180deg, var(--bg-2), var(--bg)); }
+.circuit { position: absolute; left: 0; top: 40px; width: 220px; height: 320px; opacity: 0.4; pointer-events: none; }
+.swoosh { position: absolute; left: 0; bottom: 0; width: min(36vw, 460px); height: 96px; pointer-events: none;
+  background: linear-gradient(100deg, var(--orange-2), var(--orange)); clip-path: polygon(0 30%, 100% 100%, 0 100%); }
+.swoosh::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent, var(--blue)); clip-path: polygon(0 55%, 100% 100%, 0 100%); opacity: 0.55; }
+.hero { display: block; }
+.hero > * { min-width: 0; }
+.copy { position: relative; z-index: 2; max-width: 640px; padding-block: clamp(36px, 6vw, 76px) clamp(64px, 8vw, 110px); }
+.pill { display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--orange); background: rgba(255, 138, 31, 0.1); font-size: 0.9rem; font-weight: 500; }
+.pill .ic { color: var(--orange); }
+.wordmark { margin-top: 20px; font-family: var(--font-brand); font-style: italic; font-weight: 900; font-size: clamp(3rem, 8.4vw, 6.2rem); letter-spacing: -0.02em; line-height: 0.95; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.5); }
+.wordmark b { color: var(--orange); font-weight: 900; }
+.tagline { margin-top: 12px; font-size: clamp(1.25rem, 2.6vw, 1.85rem); font-weight: 700; }
+.tagline em { font-style: normal; color: var(--blue-2); }
+.lead { margin-top: 16px; font-size: 1.08rem; color: var(--fg); opacity: 0.88; max-width: 50ch; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.pillars { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 28px; }
+.pillars li { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; font-size: 0.95rem; }
+.pillars .ic { width: 1.7em; height: 1.7em; color: var(--orange); stroke-width: 1.6; }
+.photo { position: absolute; right: 0; top: 0; bottom: 0; width: min(54%, 820px); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 20%; display: block; }
+.photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, var(--bg-2) 0%, rgba(7, 20, 54, 0.6) 24%, transparent 58%); }
+.photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 1; background: linear-gradient(0deg, var(--bg), transparent); }
+.script { position: absolute; z-index: 2; left: 38%; top: 8%; font-family: var(--font-script); font-size: clamp(1.4rem, 3vw, 2.2rem); line-height: 1.12; transform: rotate(-8deg); text-shadow: 0 3px 16px rgba(0, 0, 0, 0.6); }
+.script::after { content: ""; display: block; height: 4px; width: 120%; margin-top: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--orange), transparent); transform: rotate(-3deg); }
+
+/* Titres de section */
+section { padding-block: clamp(44px, 6vw, 76px); position: relative; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 24px; margin-bottom: 30px; }
+.sec-head > div { min-width: 0; max-width: 64ch; }
+.sec-head h2 { font-size: clamp(1.8rem, 3.8vw, 2.6rem); font-weight: 800; padding-left: 18px; position: relative; }
+.sec-head h2::before { content: ""; position: absolute; left: 0; top: 0.12em; bottom: 0.12em; width: 5px; border-radius: 3px; background: linear-gradient(180deg, var(--orange), var(--orange-2)); }
+.sec-head h2 i { font-style: normal; color: var(--orange); }
+.sec-head p { margin-top: 10px; padding-left: 18px; color: var(--muted); }
+
+/* Cartes services */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 18px; border: 1px solid var(--line);
+  background: linear-gradient(165deg, #0f2658, #08153a); box-shadow: 0 10px 34px rgba(10, 60, 160, 0.28), inset 0 0 0 1px rgba(92, 176, 255, 0.06); }
+.card .art { position: relative; height: 150px; overflow: hidden; }
+.card .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, #0c1f4d 100%); }
+.card .body { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 4px 20px 22px; flex: 1; }
+.cicon { display: grid; place-items: center; width: 44px; height: 44px; margin-top: -26px; margin-bottom: 4px; position: relative; z-index: 1; border-radius: 12px; background: #0a1a42; border: 1px solid var(--line); color: var(--blue-2); box-shadow: 0 0 20px rgba(47, 140, 255, 0.35); }
+.cicon .ic { width: 24px; height: 24px; stroke-width: 1.7; }
+.card h3 { font-size: 1.15rem; font-weight: 700; }
+.card p { color: var(--muted); font-size: 0.92rem; }
+.card ul { display: grid; gap: 6px; font-size: 0.9rem; }
+.card li { padding-left: 18px; position: relative; }
+.card li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 2px; background: var(--orange); }
+.more { margin-top: auto; padding-top: 10px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; color: var(--orange); font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+.more:hover { text-decoration: underline; }
+.card::after { content: ""; position: absolute; right: 0; bottom: 0; width: 84px; height: 46px; pointer-events: none;
+  background: linear-gradient(135deg, transparent 50%, var(--orange-2) 50%); opacity: 0.9; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+
+/* Parcours */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; position: relative; }
+.steps li { counter-increment: s; display: grid; gap: 6px; align-content: start; justify-items: start; min-width: 0; padding: 20px; border-radius: 16px; border: 1px solid var(--line-soft); background: rgba(10, 26, 66, 0.55); }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px; border-radius: 50%; font-family: var(--font-brand); font-style: italic; font-weight: 900; font-size: 1.15rem; color: var(--orange-ink); background: linear-gradient(180deg, var(--orange), var(--orange-2)); box-shadow: 0 0 18px rgba(255, 110, 20, 0.5); }
+.steps b { font-family: var(--font-display); font-size: 1.02rem; font-weight: 700; }
+.steps span { color: var(--muted); font-size: 0.92rem; }
+
+/* A propos */
+.about { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+.about > * { min-width: 0; }
+.about .pic { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 22px; }
+.about .pic img { width: 100%; height: auto; display: block; }
+.about .pic::after { content: ""; position: absolute; right: 0; top: 0; width: 38%; height: 100%; background: linear-gradient(100deg, transparent 55%, var(--orange) 55% 64%, transparent 64%); opacity: 0.9; }
+.txt { display: grid; gap: 14px; color: var(--muted); font-size: 1.02rem; }
+.txt strong { color: var(--fg); font-weight: 600; }
+.txt .slogan { color: var(--fg); font-style: italic; font-weight: 600; }
+.why h3 { font-size: clamp(1.3rem, 2.6vw, 1.8rem); font-weight: 800; padding-left: 14px; border-left: 5px solid var(--orange); margin-bottom: 18px; }
+.why ul { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.why li { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start; padding: 16px; border-radius: 16px; border: 1px solid var(--line-soft); background: rgba(10, 26, 66, 0.55); min-width: 0; }
+.why .ic { grid-row: span 2; width: 30px; height: 30px; color: var(--orange); stroke-width: 1.6; }
+.why b { font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; }
+.why span.d { color: var(--muted); font-size: 0.9rem; grid-column: 2; }
+.band { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 30px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(90deg, #08153a, #0d2250 50%, #08153a); box-shadow: 0 0 30px rgba(47, 140, 255, 0.18); }
+.band > div { display: flex; align-items: center; gap: 14px; padding: 18px 20px; min-width: 0; }
+.band > div + div { border-left: 1px solid var(--line); }
+.band .ic { width: 34px; height: 34px; color: var(--orange); stroke-width: 1.6; }
+.band b { display: block; font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; line-height: 1.2; }
+.band small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.3; }
+
+/* Réalisations */
+.works { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.work { grid-column: span 2; position: relative; overflow: hidden; background: linear-gradient(165deg, #0f2658, #08153a); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; box-shadow: 0 10px 34px rgba(10, 60, 160, 0.22); }
+.work.shot { grid-column: span 3; padding: 0; }
+.work.shot img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--line); }
+.work.shot .body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.work h3 { font-size: 1.15rem; font-weight: 700; }
+.work p { color: var(--muted); font-size: 0.95rem; }
+.tag { align-self: flex-start; margin-top: auto; padding: 3px 13px; border-radius: 999px; border: 1px solid var(--orange); font-size: 0.8rem; font-weight: 500; color: var(--orange); }
+
+/* FAQ */
+.faq { max-width: 800px; display: grid; gap: 10px; }
+details { border: 1px solid var(--line-soft); border-radius: 14px; background: rgba(10, 26, 66, 0.55); }
+details[open] { border-color: var(--line); }
+summary { cursor: pointer; list-style: none; padding: 16px 20px; font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 1.5rem; color: var(--orange); line-height: 1; flex: none; }
+details[open] summary::after { content: "\2212"; }
+details p { padding: 0 20px 18px; color: var(--muted); max-width: 62ch; }
+
+/* Contact */
+.cta { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 60px); border-radius: 24px; padding: clamp(24px, 4.5vw, 52px); border: 1px solid var(--line); position: relative; overflow: hidden;
+  background: linear-gradient(100deg, #0a2a6e 0%, #0b1f55 55%, #0b1f55 100%); box-shadow: 0 0 40px rgba(47, 140, 255, 0.2); }
+.cta::before { content: ""; position: absolute; right: 0; bottom: 0; width: min(46%, 380px); height: 100%; background: linear-gradient(100deg, transparent, rgba(255, 138, 31, 0.22)); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
+.cta > * { min-width: 0; position: relative; }
+.cta h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-weight: 800; }
+.cta .lead { margin-top: 12px; font-size: 1rem; }
+.ways { display: grid; gap: 14px; margin-top: 22px; }
+.way { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.way small { display: block; width: 100%; color: var(--muted); font-size: 0.82rem; }
+.way .val { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; user-select: all; overflow-wrap: anywhere; }
+.okl { display: none; }
+.done .lbl { display: none; }
+.done .okl { display: inline; }
+form { display: grid; gap: 14px; align-content: start; }
+label { display: grid; gap: 6px; font-weight: 500; font-size: 0.92rem; }
+input, select, textarea { width: 100%; font: inherit; color: var(--fg); background: rgba(4, 12, 36, 0.8); border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; }
+textarea { min-height: 110px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.8; }
+
+footer { border-top: 1px solid var(--line); background: var(--bg); padding-block: 24px; color: var(--muted); font-size: 0.9rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+footer nav a { text-decoration: none; color: var(--fg); font-size: 0.88rem; }
+footer nav a:hover { color: var(--orange); }
+footer .brand img { width: 48px; }
+footer .brand .name { font-size: 1.25rem; color: var(--fg); }
+
+@media (max-width: 1100px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .nav a { padding: 9px 10px; }
+}
+@media (max-width: 980px) {
+  .nav { display: none; }
+  .tools { margin-left: auto; }
+  .copy { padding-bottom: 24px; max-width: none; }
+  .photo { position: relative; width: auto; height: 300px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) calc(-1 * max(16px, env(safe-area-inset-right, 0px))); }
+  .photo::before { background: linear-gradient(180deg, var(--bg-2) 0%, transparent 40%); }
+  .script { left: 6%; top: 18%; }
+  .about, .cta { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .band { grid-template-columns: 1fr 1fr; }
+  .band > div:nth-child(3) { border-left: 0; }
+  .band > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .motto { display: none; }
+  .stripes { display: none; }
+}
+@media (max-width: 640px) {
+  .cards, .why ul, .steps { grid-template-columns: 1fr; }
+  .work, .work.shot { grid-column: span 6; }
+  .brand .slogan { display: none; }
+  .brand img { width: 46px; }
+  .brand .name { font-size: 1.25rem; }
+  .bar { gap: 10px; }
+  .tools { gap: 8px; }
+  .btn-top { padding: 9px; }
+  .btn-top span { display: none; }
+  .ci.mail { display: none; }
+  .band { grid-template-columns: 1fr; }
+  .band > div + div { border-left: 0; border-top: 1px solid var(--line); }
+  .circuit { display: none; }
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/><path d="M12 8v4M5 16v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M16 7l3 3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.3A8.4 8.4 0 1 1 21 11.5Z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2" y="14" width="4" height="6" rx="1.5"/><rect x="18" y="14" width="4" height="6" rx="1.5"/></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="ci"><svg class="ic"><use href="#i-phone"/></svg>+237 622 59 46 84</span>
+    <span class="ci mail"><svg class="ic"><use href="#i-mail"/></svg>jukland2@gmail.com</span>
+    <span class="ci"><svg class="ic"><use href="#i-pin"/></svg>Soa, Cameroun</span>
+    <span class="motto"><span class="fr">Innover aujourd'hui, construire demain…</span><span class="en">Innovate today, build tomorrow…</span></span>
+  </div>
+  <i class="stripes"></i>
+</div>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#haut" aria-label="MK_SERVICE">
+      <img src="img/logo.png" alt="Logo MK_SERVICE" width="62" height="42">
+      <span class="name">MK_<b>SERVICE</b><span class="slogan">Innover • Développer • Servir</span></span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a class="on" href="#haut"><svg class="ic"><use href="#i-home"/></svg><span class="fr">Accueil</span><span class="en">Home</span></a>
+      <a href="#services"><span class="fr">Nos services</span><span class="en">Services</span></a>
+      <a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a>
+      <a href="#realisations"><span class="fr">Nos réalisations</span><span class="en">Our work</span></a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" data-set-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-main btn-sm btn-top" target="_blank" rel="noopener" data-wa="hello" aria-label="WhatsApp">
+        <svg class="ic"><use href="#i-send"/></svg>
+        <span class="fr">Nous contacter</span><span class="en">Contact us</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+  <div class="hero-wrap">
+    <svg class="circuit" viewBox="0 0 220 320" fill="none" stroke="#2f8cff" stroke-width="1.2" aria-hidden="true">
+      <path d="M0 40h58l22 22h60"/><path d="M0 92h34l26 26h46l20 20"/><path d="M0 150h22l30 30h70"/><path d="M0 210h50l24 24h38"/><path d="M0 262h30l20 20h54"/>
+      <circle cx="140" cy="62" r="4" fill="#2f8cff"/><circle cx="126" cy="138" r="4" fill="#2f8cff"/><circle cx="122" cy="180" r="4" fill="#2f8cff"/><circle cx="112" cy="234" r="4" fill="#2f8cff"/><circle cx="104" cy="282" r="4" fill="#2f8cff"/>
+    </svg>
+    <i class="swoosh"></i>
+    <div class="wrap hero">
+      <div class="copy">
+        <span class="pill"><svg class="ic"><use href="#i-bolt"/></svg><span class="fr">Entreprise technologique polyvalente</span><span class="en">Versatile technology company</span></span>
+        <h1 class="wordmark">MK_<b>SERVICE</b></h1>
+        <p class="tagline"><span class="fr">Votre partenaire pour un <em>monde numérique</em></span><span class="en">Your partner for a <em>digital world</em></span></p>
+        <p class="lead">
+          <span class="fr">Création de sites web, solutions d'intelligence artificielle, réseaux et dépannage informatique pour les commerces, les boutiques et les particuliers.</span>
+          <span class="en">Website creation, artificial intelligence solutions, networks and IT support for shops, businesses and individuals.</span>
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-main" href="#services"><svg class="ic"><use href="#i-send"/></svg><span class="fr">Découvrir nos services</span><span class="en">Discover our services</span></a>
+          <a class="btn btn-line" target="_blank" rel="noopener" data-wa="quote"><svg class="ic"><use href="#i-chat"/></svg><span class="fr">Demander un devis gratuit</span><span class="en">Get a free quote</span></a>
+        </div>
+        <ul class="pillars">
+          <li><svg class="ic"><use href="#i-bolt"/></svg><span class="fr">Performance</span><span class="en">Performance</span></li>
+          <li><svg class="ic"><use href="#i-shield"/></svg><span class="fr">Sécurité</span><span class="en">Security</span></li>
+          <li><svg class="ic"><use href="#i-users"/></svg><span class="fr">Accompagnement personnalisé</span><span class="en">Personal support</span></li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="img/hero-person.jpg" alt="Un développeur au travail devant des serveurs, avec le logo MK_SERVICE sur son sweat" width="560" height="325">
+        <div class="script"><span class="fr">Innovation<br>Performance<br>Fiabilité</span><span class="en">Innovation<br>Performance<br>Reliability</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2><span class="fr">Nos <i>services</i></span><span class="en">Our <i>services</i></span></h2>
+          <p>
+            <span class="fr">Des solutions complètes pour répondre à vos besoins. Les tarifs dépendent de votre projet : écrivez-nous pour recevoir un devis gratuit.</span>
+            <span class="en">Complete solutions for your needs. Prices depend on your project: message us to get a free quote.</span>
+          </p>
+        </div>
+        <a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" data-wa="quote"><span class="fr">Demander un devis</span><span class="en">Ask for a quote</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="art"><img src="img/svc-web.jpg" alt="" width="188" height="150" loading="lazy"></div>
+          <div class="body">
+            <span class="cicon"><svg class="ic"><use href="#i-code"/></svg></span>
+            <h3><span class="fr">Création de sites web</span><span class="en">Website creation</span></h3>
+            <p><span class="fr">Un site pensé pour le téléphone, rapide à charger, avec un bouton WhatsApp pour que vos clients vous écrivent en un geste.</span><span class="en">A site built for phones, fast to load, with a WhatsApp button so your customers can reach you in one tap.</span></p>
+            <ul>
+              <li><span class="fr">Site vitrine pour présenter votre activité</span><span class="en">Showcase site presenting your business</span></li>
+              <li><span class="fr">Catalogue de produits avec contact WhatsApp</span><span class="en">Product catalogue with WhatsApp contact</span></li>
+              <li><span class="fr">Application web sur mesure : gestion, suivi, messagerie</span><span class="en">Custom web app: management, tracking, messaging</span></li>
+            </ul>
+            <a class="more" target="_blank" rel="noopener" data-wa="web"><span class="fr">Demander un devis</span><span class="en">Ask for a quote</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="art"><img src="img/svc-net.jpg" alt="" width="173" height="150" loading="lazy"></div>
+          <div class="body">
+            <span class="cicon"><svg class="ic"><use href="#i-net"/></svg></span>
+            <h3><span class="fr">Réseaux informatiques</span><span class="en">Computer networks</span></h3>
+            <p><span class="fr">Installation et configuration d'un réseau fiable : Wi-Fi qui couvre tout votre local, partage de fichiers et d'imprimantes entre les postes.</span><span class="en">Installation and setup of a reliable network: Wi-Fi covering your whole space, file and printer sharing between computers.</span></p>
+            <a class="more" target="_blank" rel="noopener" data-wa="net"><span class="fr">Demander un devis</span><span class="en">Ask for a quote</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="art"><img src="img/svc-fix.jpg" alt="" width="142" height="150" loading="lazy"></div>
+          <div class="body">
+            <span class="cicon"><svg class="ic"><use href="#i-wrench"/></svg></span>
+            <h3><span class="fr">Maintenance et dépannage</span><span class="en">Maintenance and repair</span></h3>
+            <p><span class="fr">Ordinateur lent, virus, système à réinstaller, sauvegarde de vos fichiers, installation de logiciels.</span><span class="en">Slow computer, viruses, system reinstall, file backup, software installation.</span></p>
+            <a class="more" target="_blank" rel="noopener" data-wa="fix"><span class="fr">Demander un devis</span><span class="en">Ask for a quote</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="art"><img src="img/svc-ia.jpg" alt="" width="188" height="150" loading="lazy"></div>
+          <div class="body">
+            <span class="cicon"><svg class="ic"><use href="#i-chip"/></svg></span>
+            <h3><span class="fr">Solutions IA</span><span class="en">AI solutions</span></h3>
+            <p><span class="fr">Utiliser l'intelligence artificielle pour gagner du temps au quotidien.</span><span class="en">Use artificial intelligence to save time every day.</span></p>
+            <ul>
+              <li><span class="fr">Automatisation de tâches : documents, messages, tableaux</span><span class="en">Task automation: documents, messages, spreadsheets</span></li>
+              <li><span class="fr">Contenus pour réseaux sociaux : affiches, textes, images</span><span class="en">Social media content: posters, copy, images</span></li>
+              <li><span class="fr">Conseil pour choisir et utiliser les bons outils IA</span><span class="en">Advice on choosing and using the right AI tools</span></li>
+            </ul>
+            <a class="more" target="_blank" rel="noopener" data-wa="ia"><span class="fr">Demander un devis</span><span class="en">Ask for a quote</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="parcours">
+    <div class="wrap">
+      <div class="sec-head"><div><h2><span class="fr">Comment ça <i>se passe</i></span><span class="en">How it <i>works</i></span></h2></div></div>
+      <ol class="steps">
+        <li><b><span class="fr">Vous nous écrivez</span><span class="en">You message us</span></b><span><span class="fr">Décrivez votre besoin sur WhatsApp, avec vos mots.</span><span class="en">Describe your need on WhatsApp, in your own words.</span></span></li>
+        <li><b><span class="fr">On en discute</span><span class="en">We talk it through</span></b><span><span class="fr">On pose les bonnes questions pour comprendre votre activité.</span><span class="en">We ask the right questions to understand your business.</span></span></li>
+        <li><b><span class="fr">Vous recevez un devis</span><span class="en">You get a quote</span></b><span><span class="fr">Gratuit et clair, avec le travail prévu et le prix.</span><span class="en">Free and clear, with the planned work and the price.</span></span></li>
+        <li><b><span class="fr">On réalise et on suit</span><span class="en">We build and follow up</span></b><span><span class="fr">Livraison, puis suivi : si quelque chose ne marche pas, on le corrige.</span><span class="en">Delivery, then follow-up: if something doesn't work, we fix it.</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="wrap">
+      <div class="about">
+        <div>
+          <div class="sec-head" style="margin-bottom:20px"><div><h2><span class="fr">À propos de <i>MK_SERVICE</i></span><span class="en">About <i>MK_SERVICE</i></span></h2></div></div>
+          <div class="pic"><img src="img/office.jpg" alt="Poste de travail avec le logo MK sur l'écran" width="336" height="160" loading="lazy"></div>
+          <div class="txt">
+            <p>
+              <span class="fr"><strong>MK_SERVICE</strong> est une entreprise de services informatiques basée à Soa, au Cameroun, dirigée par JUK LAND. Sa mission : offrir des services fiables, modernes et adaptés aux besoins de chaque client, qu'il s'agisse d'un particulier, d'un commerce ou d'une boutique.</span>
+              <span class="en"><strong>MK_SERVICE</strong> is an IT services company based in Soa, Cameroon, led by JUK LAND. Its mission: provide reliable, modern services adapted to each client's needs, whether an individual, a business or a shop.</span>
+            </p>
+            <p>
+              <span class="fr">Chaque projet commence par une discussion sur votre activité, pas par une liste de technologies.</span>
+              <span class="en">Every project starts with a conversation about your business, not a list of technologies.</span>
+            </p>
+            <p class="slogan"><span class="fr">Ensemble, construisons un avenir numérique meilleur !</span><span class="en">Together, let's build a better digital future!</span></p>
+          </div>
+        </div>
+        <div class="why">
+          <h3><span class="fr">Pourquoi choisir MK_SERVICE ?</span><span class="en">Why choose MK_SERVICE?</span></h3>
+          <ul>
+            <li><svg class="ic"><use href="#i-gift"/></svg><b><span class="fr">Devis gratuit</span><span class="en">Free quote</span></b><span class="d"><span class="fr">Vous connaissez le prix avant le premier travail.</span><span class="en">You know the price before any work begins.</span></span></li>
+            <li><svg class="ic"><use href="#i-key"/></svg><b><span class="fr">Vos accès restent à vous</span><span class="en">Your accounts stay yours</span></b><span class="d"><span class="fr">Le site et les comptes sont à votre nom.</span><span class="en">The site and accounts are in your name.</span></span></li>
+            <li><svg class="ic"><use href="#i-shield"/></svg><b><span class="fr">Suivi après livraison</span><span class="en">Support after delivery</span></b><span class="d"><span class="fr">Une question, un souci : écrivez-nous.</span><span class="en">A question, a problem: message us.</span></span></li>
+            <li><svg class="ic"><use href="#i-chat"/></svg><b><span class="fr">Réponse sur WhatsApp</span><span class="en">Answers on WhatsApp</span></b><span class="d"><span class="fr">Vous parlez à la personne qui fait le travail.</span><span class="en">You talk to the person doing the work.</span></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="band">
+        <div><svg class="ic"><use href="#i-gift"/></svg><span><b><span class="fr">Devis gratuit</span><span class="en">Free quote</span></b><small><span class="fr">avant de commencer</span><span class="en">before we start</span></small></span></div>
+        <div><svg class="ic"><use href="#i-globe"/></svg><span><b>FR / EN</b><small><span class="fr">site en deux langues</span><span class="en">site in two languages</span></small></span></div>
+        <div><svg class="ic"><use href="#i-chat"/></svg><span><b>WhatsApp</b><small><span class="fr">réponse directe</span><span class="en">direct answers</span></small></span></div>
+        <div><svg class="ic"><use href="#i-pin"/></svg><span><b>Soa</b><small><span class="fr">Cameroun</span><span class="en">Cameroon</span></small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <h2><span class="fr">Nos <i>réalisations</i></span><span class="en">Our <i>work</i></span></h2>
+        <p><span class="fr">Des projets conçus par MK_SERVICE.</span><span class="en">Projects built by MK_SERVICE.</span></p>
+      </div></div>
+      <div class="works">
+        <article class="work shot">
+          <img src="img/codenova.jpg" alt="Capture de CodeNova IDE : éditeur de code avec aperçu en direct" width="1280" height="687" loading="lazy">
+          <div class="body">
+            <h3>CodeNova IDE</h3>
+            <p><span class="fr">Un éditeur de code dans le navigateur. On écrit du HTML, du CSS et du JavaScript et on voit le résultat en direct, sans rien installer.</span><span class="en">A code editor in the browser. Write HTML, CSS and JavaScript and see the result live, with nothing to install.</span></p>
+            <span class="tag"><span class="fr">Outil web</span><span class="en">Web tool</span></span>
+          </div>
+        </article>
+        <article class="work shot">
+          <img src="img/mk.jpg" alt="Capture de MK, assistant d'apprentissage basé sur l'IA" width="1212" height="694" loading="lazy">
+          <div class="body">
+            <h3><span class="fr">MK, assistant d'apprentissage</span><span class="en">MK, learning assistant</span></h3>
+            <p><span class="fr">Un assistant IA qui explique simplement, aide en programmation et en mathématiques, et accompagne les révisions.</span><span class="en">An AI assistant that explains things simply, helps with programming and maths, and supports revision.</span></p>
+            <span class="tag"><span class="fr">Solution IA</span><span class="en">AI solution</span></span>
+          </div>
+        </article>
+        <article class="work">
+          <h3>City Driver: Underground 3D</h3>
+          <p><span class="fr">Un jeu de conduite en 3D qui se joue directement dans le navigateur.</span><span class="en">A 3D driving game played right in the browser.</span></p>
+          <span class="tag"><span class="fr">Jeu 3D</span><span class="en">3D game</span></span>
+        </article>
+        <article class="work">
+          <h3><span class="fr">Messagerie d'association</span><span class="en">Association messaging</span></h3>
+          <p><span class="fr">Une application de messagerie pour que les membres d'une association échangent facilement.</span><span class="en">A messaging app that lets members of an association talk easily.</span></p>
+          <span class="tag"><span class="fr">Application web</span><span class="en">Web app</span></span>
+        </article>
+        <article class="work">
+          <h3><span class="fr">Gestion de pharmacie</span><span class="en">Pharmacy management</span></h3>
+          <p><span class="fr">Une application de gestion pour le travail de tous les jours d'une pharmacie.</span><span class="en">A management app for a pharmacy's everyday work.</span></p>
+          <span class="tag"><span class="fr">Application de gestion</span><span class="en">Management app</span></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head"><div><h2><span class="fr">Questions <i>fréquentes</i></span><span class="en">Frequently asked <i>questions</i></span></h2></div></div>
+      <div class="faq">
+        <details><summary><span class="fr">Combien coûte un site web ?</span><span class="en">How much does a website cost?</span></summary>
+          <p><span class="fr">Le prix dépend du nombre de pages et des fonctions voulues. Écrivez-nous votre besoin sur WhatsApp et vous recevez un devis gratuit.</span><span class="en">The price depends on the number of pages and the features you want. Message us your need on WhatsApp and you get a free quote.</span></p></details>
+        <details><summary><span class="fr">Je n'ai pas de site, par où commencer ?</span><span class="en">I don't have a website. Where do I start?</span></summary>
+          <p><span class="fr">Écrivez-nous ce que vous vendez ou ce que vous faites. On vous propose les pages utiles et on s'occupe du reste.</span><span class="en">Tell us what you sell or do. We suggest the pages you need and take care of the rest.</span></p></details>
+        <details><summary><span class="fr">Pouvez-vous mettre mon site en ligne ?</span><span class="en">Can you put my site online?</span></summary>
+          <p><span class="fr">Oui. On s'occupe de la mise en ligne et on vous explique comment mettre le contenu à jour.</span><span class="en">Yes. We handle publishing and show you how to update the content.</span></p></details>
+        <details><summary><span class="fr">Travaillez-vous avec les particuliers ?</span><span class="en">Do you work with individuals?</span></summary>
+          <p><span class="fr">Oui, avec les particuliers, les commerces et les boutiques : dépannage, réseau, site web ou outils IA.</span><span class="en">Yes, with individuals, businesses and shops: repair, network, website or AI tools.</span></p></details>
+        <details><summary><span class="fr">Comment se passe le paiement ?</span><span class="en">How does payment work?</span></summary>
+          <p><span class="fr">Les modalités de paiement sont écrites dans le devis, avant le début du travail.</span><span class="en">Payment terms are written in the quote, before any work begins.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2><span class="fr">Besoin d'un service&nbsp;? Contactez-nous dès maintenant !</span><span class="en">Need a service? Contact us now!</span></h2>
+          <p class="lead"><span class="fr">Le plus rapide : un message WhatsApp. Vous pouvez aussi remplir le formulaire, le message s'ouvre dans WhatsApp. Notre équipe est à votre écoute pour vous accompagner.</span><span class="en">The fastest way: a WhatsApp message. You can also fill in the form, and the message opens in WhatsApp. Our team is here to support you.</span></p>
+          <div class="ways">
+            <div class="way">
+              <small>WhatsApp</small>
+              <span class="val">+237 622 59 46 84</span>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="+237 622 59 46 84"><span class="lbl"><span class="fr">Copier</span><span class="en">Copy</span></span><span class="okl"><span class="fr">Copié</span><span class="en">Copied</span></span></button>
+            </div>
+            <div class="way">
+              <small>E-mail</small>
+              <span class="val">jukland2@gmail.com</span>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="jukland2@gmail.com"><span class="lbl"><span class="fr">Copier</span><span class="en">Copy</span></span><span class="okl"><span class="fr">Copié</span><span class="en">Copied</span></span></button>
+            </div>
+            <div class="way">
+              <small><span class="fr">Lieu</span><span class="en">Location</span></small>
+              <span class="val">Soa, Cameroun</span>
+            </div>
+          </div>
+        </div>
+        <form id="form" autocomplete="off">
+          <label for="f-name"><span><span class="fr">Votre nom</span><span class="en">Your name</span></span>
+            <input id="f-name" type="text" data-ph-fr="Ex. Marie" data-ph-en="E.g. Marie" placeholder="Ex. Marie">
+          </label>
+          <label for="f-svc"><span><span class="fr">Service souhaité</span><span class="en">Service needed</span></span>
+            <select id="f-svc">
+              <option value="web" data-fr="Création de site web" data-en="Website creation">Création de site web</option>
+              <option value="ia" data-fr="Solutions IA" data-en="AI solutions">Solutions IA</option>
+              <option value="net" data-fr="Réseau informatique" data-en="Computer network">Réseau informatique</option>
+              <option value="fix" data-fr="Maintenance et dépannage" data-en="Maintenance and repair">Maintenance et dépannage</option>
+              <option value="other" data-fr="Autre demande" data-en="Something else">Autre demande</option>
+            </select>
+          </label>
+          <label for="f-msg"><span><span class="fr">Votre besoin</span><span class="en">Your need</span></span>
+            <textarea id="f-msg" data-ph-fr="Décrivez en quelques lignes ce que vous voulez faire." data-ph-en="Describe in a few lines what you want to do." placeholder="Décrivez en quelques lignes ce que vous voulez faire."></textarea>
+          </label>
+          <a class="btn btn-main" id="send" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-send"/></svg>
+            <span class="fr">Envoyer sur WhatsApp</span><span class="en">Send on WhatsApp</span>
+          </a>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><img src="img/logo.png" alt="" width="48" height="33"><span class="name">MK_<b>SERVICE</b></span></span>
+    <nav aria-label="Pied de page">
+      <a href="#haut"><span class="fr">Accueil</span><span class="en">Home</span></a>
+      <a href="#services">Services</a>
+      <a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a>
+      <a href="#realisations"><span class="fr">Réalisations</span><span class="en">Our work</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span>© 2026 MK_SERVICE. <span class="fr">Tous droits réservés.</span><span class="en">All rights reserved.</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var WA = "237622594684";
+  var MSG = {
+    hello: { fr: "Bonjour MK_SERVICE, je voudrais discuter de mon projet.", en: "Hello MK_SERVICE, I would like to discuss my project." },
+    quote: { fr: "Bonjour MK_SERVICE, je voudrais un devis gratuit.", en: "Hello MK_SERVICE, I would like a free quote." },
+    web:   { fr: "Bonjour MK_SERVICE, je voudrais un site web. Pouvez-vous m'envoyer un devis ?", en: "Hello MK_SERVICE, I would like a website. Could you send me a quote?" },
+    ia:    { fr: "Bonjour MK_SERVICE, je suis intéressé par vos solutions IA. Pouvez-vous m'envoyer un devis ?", en: "Hello MK_SERVICE, I am interested in your AI solutions. Could you send me a quote?" },
+    net:   { fr: "Bonjour MK_SERVICE, je voudrais une installation réseau. Pouvez-vous m'envoyer un devis ?", en: "Hello MK_SERVICE, I would like a network installation. Could you send me a quote?" },
+    fix:   { fr: "Bonjour MK_SERVICE, j'ai un problème informatique à faire dépanner.", en: "Hello MK_SERVICE, I have a computer problem that needs fixing." }
+  };
+  var root = document.documentElement;
+  var lang = "fr";
+  try { var s = localStorage.getItem("mk-lang"); if (s === "fr" || s === "en") lang = s; } catch (e) {}
+
+  var name = document.getElementById("f-name");
+  var svc = document.getElementById("f-svc");
+  var msg = document.getElementById("f-msg");
+  var send = document.getElementById("send");
+
+  function wa(text) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(text); }
+
+  function updateForm() {
+    var who = name.value.trim();
+    var label = svc.options[svc.selectedIndex].getAttribute("data-" + lang);
+    var body = msg.value.trim();
+    var text = lang === "fr"
+      ? "Bonjour MK_SERVICE, " + (who ? "je m'appelle " + who + ". " : "") + "Service souhaité : " + label + "." + (body ? " " + body : "")
+      : "Hello MK_SERVICE, " + (who ? "my name is " + who + ". " : "") + "Service needed: " + label + "." + (body ? " " + body : "");
+    send.href = wa(text);
+  }
+
+  function setLang(l) {
+    lang = l;
+    root.setAttribute("data-lang", l);
+    root.setAttribute("lang", l);
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-set-lang") === l ? "true" : "false");
+    });
+    document.querySelectorAll("[data-wa]").forEach(function (a) { a.href = wa(MSG[a.getAttribute("data-wa")][l]); });
+    document.querySelectorAll("option[data-fr]").forEach(function (o) { o.textContent = o.getAttribute("data-" + l); });
+    document.querySelectorAll("[data-ph-fr]").forEach(function (el) { el.placeholder = el.getAttribute("data-ph-" + l); });
+    updateForm();
+    try { localStorage.setItem("mk-lang", l); } catch (e) {}
+  }
+
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); });
+  });
+  [name, svc, msg].forEach(function (el) { el.addEventListener("input", updateForm); el.addEventListener("change", updateForm); });
+  document.getElementById("form").addEventListener("submit", function (e) { e.preventDefault(); });
+
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var value = btn.getAttribute("data-copy");
+      var val = btn.parentNode.querySelector(".val");
+      function fallback() {
+        if (!val) return;
+        var r = document.createRange(); r.selectNodeContents(val);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }
+      function ok() { btn.classList.add("done"); setTimeout(function () { btn.classList.remove("done"); }, 1800); }
+      try { navigator.clipboard.writeText(value).then(ok, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  setLang(lang);
+})();
+</script>
+
+</body>
+</html>
